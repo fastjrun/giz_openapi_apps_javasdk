@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bundle>
+	<packets>
+		<packet class="packet.CreateUserFormUserName"
+			parent="com.fastjrun.sdkg.packet.BaseRequestBody">
+			<field name="username" dataType="String" length="64"
+				canBeNull="true" remark="用户名,用户名密码注册的请求参数" />
+			<field name="password" dataType="String" length="64"
+				canBeNull="true" remark="密码,用户名密码注册、手机注册、邮箱注册的请求参数" />
+		</packet>
+		<packet class="packet.CreateUserFormEmail"
+			parent="com.fastjrun.sdkg.packet.BaseRequestBody">
+			<field name="email" dataType="String" length="64"
+				canBeNull="true" remark="邮件地址,邮箱注册的请求参数" />
+			<field name="password" dataType="String" length="64"
+				canBeNull="true" remark="密码,用户名密码注册、手机注册、邮箱注册的请求参数" />
+		</packet>
+		<packet class="packet.CreateUserForm"
+			parent="com.fastjrun.sdkg.packet.BaseRequestBody">
+			<field name="phone_id" dataType="String" length="12"
+				canBeNull="true" remark="匿名标识,匿名注册的请求参数" />
+			<field name="username" dataType="String" length="64"
+				canBeNull="true" remark="用户名,用户名密码注册的请求参数" />
+			<field name="password" dataType="String" length="64"
+				canBeNull="true" remark="密码,用户名密码注册、手机注册、邮箱注册的请求参数" />
+			<field name="phone" dataType="String" length="64"
+				canBeNull="true" remark="手机号码,手机号码，手机注册的请求参数" />
+			<field name="code" dataType="String" length="64"
+				canBeNull="true" remark="验证码,短信验证码，手机注册的请求参数" />
+			<field name="lang" dataType="String" length="64"
+				canBeNull="true" remark="语言:en，zh-cn" />
+			<object name="authData" class="packet.CreateUserFormAuthData">
+				<field name="src" dataType="String" length="64"
+					canBeNull="true"
+					remark="平台类型:qq,sina,baidu,wechat,twitter,facebook,google, amazon" />
+				<field name="uid" dataType="String" length="64"
+					canBeNull="true" remark="第三方登录平台返回的uid" />
+				<field name="token" dataType="String" length="64"
+					canBeNull="true" remark="第三方登录平台返回的token" />
+				<field name="token_secret " dataType="String" length="64"
+					canBeNull="true" remark="针对 twitter 平台，需要传用户 token_secret" />
+			</object>
+		</packet>
+		<packet class="packet.UserTokenModel"
+			parent="com.fastjrun.sdkg.packet.BaseResponseBody">
+			<field name="uid" dataType="String" length="12"
+				canBeNull="true" remark="用户唯一id" />
+			<field name="token" dataType="String" length="64"
+				canBeNull="true" remark="用户token" />
+			<field name="expire_at" dataType="String" length="64"
+				canBeNull="true" remark="token过期时间（时间戳）" />
+		</packet>
+		<packet class="packet.LoginForm"
+			parent="com.fastjrun.sdkg.packet.BaseRequestBody">
+			<field name="username" dataType="String" length="64"
+				canBeNull="true" remark="用户名，可以是用户的 username/email/phone" />
+			<field name="password" dataType="String" length="64"
+				canBeNull="true" remark="密码,用户名密码注册、手机注册、邮箱注册的请求参数" />
+			<field name="lang" dataType="String" length="64"
+				canBeNull="true" remark="语言:en，zh-cn" />
+		</packet>
+		<packet class="packet.UserModel"
+			parent="com.fastjrun.sdkg.packet.BaseResponseBody">
+			<field name="username" dataType="String" length="64"
+				canBeNull="true" remark="用户名，可以是用户的 username/email/phone" />
+			<field name="phone" dataType="String" length="64"
+				canBeNull="true" remark="手机号码,手机号码，手机注册的请求参数" />
+			<field name="email" dataType="String" length="64"
+				canBeNull="true" remark="注册邮箱" />
+			<field name="name" dataType="String" length="64"
+				canBeNull="true" remark="姓名" />
+			<field name="gender" dataType="String" length="64"
+				canBeNull="true" remark="性别，M：男, F：女, N：未知" />
+			<field name="birthday" dataType="String" length="64"
+				canBeNull="true" remark="生日，日期格式：YYYY-MM-DD or MM-DD" />
+			<field name="address" dataType="String" length="64"
+				canBeNull="true" remark="地址" />
+			<field name="lang" dataType="String" length="64"
+				canBeNull="true" remark="语言版本en, zh-cn" />
+			<field name="remark" dataType="String" length="64"
+				canBeNull="true" remark="备注" />
+			<field name="uid" dataType="String" length="64"
+				canBeNull="true" remark="用户唯一id" />
+			<field name="is_anonymous" dataType="String" length="64"
+				canBeNull="true" remark="是否匿名用户" />
+		</packet>
+		<packet class="packet.RequestTokenModel"
+			parent="com.fastjrun.sdkg.packet.BaseResponseBody">
+			<field name="token" dataType="String" length="64"
+				canBeNull="true" remark="用户token" />
+			<field name="expired_at" dataType="String" length="64"
+				canBeNull="true" remark="token过期时间（时间戳）" />
+		</packet>
+		<packet class="packet.ErrorData"
+			parent="com.fastjrun.sdkg.packet.BaseResponseBody">
+			<list name="defaultKey" class="packet.ErrorModel">
+				<field name="status" dataType="String" length="12"
+					canBeNull="true" remark="响应码" />
+				<field name="error_code" dataType="String" length="64"
+					canBeNull="true" remark="错误码" />
+				<field name="error_message" dataType="String" length="64"
+					canBeNull="true" remark="错误信息" />
+			</list>
+		</packet>
+	</packets>
+	<genericControllers>
+		<genericController name="UserManagerController"
+			path="/app/" clientName="UserManagerClient"
+			clientParent="com.fastjrun.share.giz_openapi_apps.sdk.client.BaseGizClient"
+			remark="用户管理接口" tags="用户管理接口">
+			<service name="userService" class="UserServiceRest">
+				<method name="createByUserName" version="" path="users"
+					remark="创建用户">
+					<request class="packet.CreateUserFormUserName" />
+					<response class="packet.UserTokenModel" />
+				</method>
+				<method name="createByEmail" version="" path="users"
+					remark="创建用户">
+					<request class="packet.CreateUserFormEmail" />
+					<response class="packet.UserTokenModel" />
+				</method>
+				<method name="login" version="" path="login"
+					remark="用户登录">
+					<request class="packet.LoginForm" />
+					<response class="packet.UserTokenModel" />
+				</method>
+				<method name="getUserInfo" version="" path="users"
+					remark="获取用户信息" method="GET">
+					<headvariables>
+						<headvariable name="X-Gizwits-User-token"
+							nameAlias="X_Gizwits_User_token" dataType="String" length="8"
+							remark="X-Gizwits-User-token" />
+					</headvariables>
+					<response class="packet.UserModel" />
+				</method>
+				<method name="request_token" version="" path="request_token"
+					remark="获取Token">
+					<response class="packet.RequestTokenModel" />
+				</method>
+			</service>
+		</genericController>
+		<genericController name="GeneralController" path="/"
+			clientName="GeneralClient"
+			clientParent="com.fastjrun.share.giz_openapi_apps.sdk.client.BaseGizClient"
+			remark="一般管理接口" tags="一般管理接口">
+			<service name="generalService" class="GeneralServiceRest">
+				<method name="errors" version="" path="errors"
+					remark="错误状态码列表" method="GET">
+					<response class="packet.ErrorData" />
+				</method>
+			</service>
+		</genericController>
+	</genericControllers>
+</bundle>
